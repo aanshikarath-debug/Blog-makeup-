@@ -1,0 +1,6 @@
+{
+  "name": "Velvet & Glow – Beauty & Makeup Journal",
+  "description": "An editorial beauty destination featuring expert makeup guides, curated product reviews, beginner tutorials, and skincare advice.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
