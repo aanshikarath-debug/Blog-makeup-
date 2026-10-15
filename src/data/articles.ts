@@ -24,7 +24,8 @@ export const AUTHORS: Record<string, Author> = {
 export const ARTICLES: Article[] = [
   // 1. Best Makeup Products for Beginners
   {
-    slug: 'best-makeup-products-for-beginners',
+    slug: 'beginners',
+    aliases: ['best-makeup-products-for-beginners', 'beginner-makeup'],
     title: 'The Ultimate Beginner Makeup Starter Kit: What You Actually Need',
     subtitle: 'Cut through marketing hype with our foolproof, dermatologist-approved starter kit designed for foolproof application and natural radiance.',
     metaTitle: 'Best Makeup Products for Beginners (2026 Guide) | Velvet & Glow',
@@ -154,7 +155,8 @@ export const ARTICLES: Article[] = [
 
   // 2. Top 10 Foundations for Flawless Skin
   {
-    slug: 'top-10-foundations-for-flawless-skin',
+    slug: 'foundations',
+    aliases: ['top-10-foundations-for-flawless-skin', 'best-foundations'],
     title: 'Top 10 Foundations for Flawless Skin: The Pro Artist Complexion Guide',
     subtitle: 'From weightless water-weight serums to 24-hour red carpet velvet formulas, here are the top 10 foundations tested across diverse skin types and undertones.',
     metaTitle: 'Top 10 Foundations for Flawless Skin (Tested & Ranked) | Velvet & Glow',
@@ -299,7 +301,8 @@ export const ARTICLES: Article[] = [
 
   // 3. Best Lipsticks for Every Skin Tone
   {
-    slug: 'best-lipsticks-for-every-skin-tone',
+    slug: 'lipsticks',
+    aliases: ['best-lipsticks-for-every-skin-tone', 'best-lipsticks'],
     title: 'The Definitive Lipstick Guide: The Most Flattering Shades for Every Skin Tone',
     subtitle: 'From iconic 90s nude browns to electric berries and timeless blue-reds, find your signature lip color tailored to fair, medium, olive, and deep complexions.',
     metaTitle: 'Best Lipsticks for Every Skin Tone (Expert Swatches) | Velvet & Glow',
@@ -415,7 +418,8 @@ export const ARTICLES: Article[] = [
 
   // 4. Affordable Makeup Products Worth Buying
   {
-    slug: 'affordable-makeup-products-worth-buying',
+    slug: 'affordable',
+    aliases: ['affordable-makeup-products-worth-buying', 'affordable-makeup', 'budget-beauty'],
     title: 'Affordable Makeup Products Worth Buying: Drugstore Gems That Beat Luxury',
     subtitle: 'High performance does not require three-digit price tags. Our editors crowned the top budget cosmetics that outshine designer brands in blind testing.',
     metaTitle: 'Affordable Makeup Products Worth Buying (2026 Drugstore Dupes) | Velvet & Glow',
@@ -528,7 +532,8 @@ export const ARTICLES: Article[] = [
 
   // 5. Best Mascaras for Longer, Fuller Lashes
   {
-    slug: 'best-mascaras-for-longer-fuller-lashes',
+    slug: 'mascaras',
+    aliases: ['best-mascaras-for-longer-fuller-lashes', 'best-mascaras'],
     title: 'Best Mascaras for Longer, Fuller Lashes: Tested for Curl, Volume & Smudge-Proof Hold',
     subtitle: 'Say goodbye to flaking, clumping, and dreaded mid-day panda eyes. Here are the top wand-and-formula combinations that truly deliver falsie-level drama.',
     metaTitle: 'Best Mascaras for Longer, Fuller Lashes (2026 Test) | Velvet & Glow',
@@ -641,7 +646,8 @@ export const ARTICLES: Article[] = [
 
   // 6. How to Choose the Perfect Concealer
   {
-    slug: 'how-to-choose-the-perfect-concealer',
+    slug: 'concealers',
+    aliases: ['how-to-choose-the-perfect-concealer', 'concealer-guide'],
     title: 'How to Choose the Perfect Concealer: The Ultimate Match & Placement Guide',
     subtitle: 'Under-eye creasing, cakey blemish patches, and wrong undertones end here. Learn how to select the right formula, shade depth, and precision technique.',
     metaTitle: 'How to Choose the Perfect Concealer: Shade & Formula Guide | Velvet & Glow',
@@ -740,7 +746,8 @@ export const ARTICLES: Article[] = [
 
   // 7. Best Blushes for a Natural Glow
   {
-    slug: 'best-blushes-for-a-natural-glow',
+    slug: 'blushes',
+    aliases: ['best-blushes-for-a-natural-glow', 'best-blushes'],
     title: 'Best Blushes for a Natural Glow: Creams, Liquids & Baked Powders Compared',
     subtitle: 'From lit-from-within sheer gels to velvety baked marbles, discover the blushes that impart effortless, healthy youthfulness to every cheekbone.',
     metaTitle: 'Best Blushes for a Natural Glow (Cream vs Liquid vs Powder) | Velvet & Glow',
@@ -838,7 +845,8 @@ export const ARTICLES: Article[] = [
 
   // 8. Top Makeup Brands Worth Trying
   {
-    slug: 'top-makeup-brands-worth-trying',
+    slug: 'brands',
+    aliases: ['top-makeup-brands-worth-trying', 'top-brands'],
     title: 'Top Makeup Brands Worth Trying: The Industry Standouts Worth Your Money',
     subtitle: 'From minimalist skincare-infused powerhouses to artist-founded prestige dynasties, here are the beauty houses that consistently justify their reputation.',
     metaTitle: 'Top Makeup Brands Worth Trying (2026 Rankings) | Velvet & Glow',
@@ -943,7 +951,8 @@ export const ARTICLES: Article[] = [
 
   // 9. Step-by-Step Everyday Makeup Tutorial
   {
-    slug: 'step-by-step-everyday-makeup-tutorial',
+    slug: 'everyday-makeup',
+    aliases: ['step-by-step-everyday-makeup-tutorial', 'tutorial'],
     title: 'Step-by-Step Everyday Makeup Tutorial: The 10-Minute Morning Routine',
     subtitle: 'A streamlined, foolproof routine for fresh, polished skin that lasts all workday and takes under ten minutes to execute.',
     metaTitle: 'Step-by-Step Everyday Makeup Tutorial (10-Minute Routine) | Velvet & Glow',
@@ -1044,7 +1053,8 @@ export const ARTICLES: Article[] = [
 
   // 10. Best Makeup Products for Oily Skin
   {
-    slug: 'best-makeup-products-for-oily-skin',
+    slug: 'oily-skin',
+    aliases: ['best-makeup-products-for-oily-skin', 'oily-skin-makeup'],
     title: 'Best Makeup Products for Oily Skin: The Shine-Control Longevity Arsenal',
     subtitle: 'Control excess sebum, prevent makeup breakdown, and blur enlarged pores without looking flat, chalky, or dry.',
     metaTitle: 'Best Makeup Products for Oily Skin (Shine Control Tested) | Velvet & Glow',

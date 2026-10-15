@@ -115,33 +115,33 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
   };
 
   const handleShare = async (platform: 'copy' | 'twitter' | 'pinterest' | 'facebook' | 'whatsapp') => {
-    const url = window.location.href;
+    const cleanUrl = `${window.location.origin}/${article.slug}`;
     const title = article.title;
 
     if (platform === 'copy') {
       try {
-        await navigator.clipboard.writeText(url);
-        showToast('Article link copied to clipboard!');
+        await navigator.clipboard.writeText(cleanUrl);
+        showToast(`Short link copied: /${article.slug}`);
       } catch {
-        showToast('Link copied: ' + url);
+        showToast('Link copied: ' + cleanUrl);
       }
     } else if (platform === 'twitter') {
       window.open(
-        `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
+        `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(cleanUrl)}`,
         '_blank'
       );
     } else if (platform === 'pinterest') {
       window.open(
-        `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(
+        `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(cleanUrl)}&media=${encodeURIComponent(
           article.heroImage
         )}&description=${encodeURIComponent(title)}`,
         '_blank'
       );
     } else if (platform === 'facebook') {
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(cleanUrl)}`, '_blank');
     } else if (platform === 'whatsapp') {
       window.open(
-        `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`,
+        `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + cleanUrl)}`,
         '_blank'
       );
     }

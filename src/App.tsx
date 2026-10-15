@@ -31,12 +31,27 @@ export default function App() {
     } catch {
       // fallback
     }
-    return ['best-makeup-products-for-beginners']; // seed with 1 article
+    return ['beginners']; // seed with 1 article
   });
 
+  const isArticleSaved = (slug: string) => {
+    const article = ARTICLES.find((a) => a.slug === slug || a.aliases?.includes(slug));
+    if (!article) return savedSlugs.includes(slug);
+    return savedSlugs.includes(article.slug) || (article.aliases ? article.aliases.some((al) => savedSlugs.includes(al)) : false);
+  };
+
   const handleToggleSave = (slug: string) => {
+    const article = ARTICLES.find((a) => a.slug === slug || a.aliases?.includes(slug));
+    const targetSlug = article ? article.slug : slug;
+
     setSavedSlugs((prev) => {
-      const next = prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug];
+      const isAlreadySaved = prev.includes(targetSlug) || (article?.aliases && article.aliases.some((al) => prev.includes(al)));
+      let next: string[];
+      if (isAlreadySaved) {
+        next = prev.filter((s) => s !== targetSlug && !(article?.aliases && article.aliases.includes(s)));
+      } else {
+        next = [...prev, targetSlug];
+      }
       try {
         localStorage.setItem('velvet_saved_articles', JSON.stringify(next));
       } catch {
@@ -55,10 +70,11 @@ export default function App() {
     }
   };
 
-  // Find active article if slug in route
+  // Find active article if slug in route (matches direct short slug or any alias)
   const currentArticle = useMemo(() => {
-    if (!route.slug) return null;
-    return ARTICLES.find((a) => a.slug === route.slug) || null;
+    const slug = route.slug;
+    if (!slug) return null;
+    return ARTICLES.find((a) => a.slug === slug || (a.aliases && a.aliases.includes(slug))) || null;
   }, [route.slug]);
 
   // Sync SEO meta tags and canonical URL whenever route or active article changes
@@ -140,8 +156,8 @@ export default function App() {
             article={currentArticle}
             allArticles={ARTICLES}
             onBack={() => navigate('/')}
-            onNavigateSlug={(slug) => navigate(`/blog/${slug}`)}
-            isSaved={savedSlugs.includes(currentArticle.slug)}
+            onNavigateSlug={(slug) => navigate(`/${slug}`)}
+            isSaved={isArticleSaved(currentArticle.slug)}
             onToggleSave={handleToggleSave}
           />
         ) : (
@@ -152,8 +168,8 @@ export default function App() {
               <HeroFeatured
                 featuredArticle={featuredArticle}
                 secondaryArticles={secondaryStories}
-                onRead={(slug) => navigate(`/blog/${slug}`)}
-                isSaved={(slug) => savedSlugs.includes(slug)}
+                onRead={(slug) => navigate(`/${slug}`)}
+                isSaved={isArticleSaved}
                 onToggleSave={handleToggleSave}
               />
             )}
@@ -216,8 +232,8 @@ export default function App() {
                   <ArticleCard
                     key={article.slug}
                     article={article}
-                    onRead={(slug) => navigate(`/blog/${slug}`)}
-                    isSaved={savedSlugs.includes(article.slug)}
+                    onRead={(slug) => navigate(`/${slug}`)}
+                    isSaved={isArticleSaved(article.slug)}
                     onToggleSave={handleToggleSave}
                   />
                 ))}
@@ -256,7 +272,7 @@ export default function App() {
           setSearchQuery('');
           navigate('/');
         }}
-        onNavigateSlug={(slug) => navigate(`/blog/${slug}`)}
+        onNavigateSlug={(slug) => navigate(`/${slug}`)}
         articles={ARTICLES}
       />
 
@@ -265,7 +281,7 @@ export default function App() {
         isOpen={isQuizOpen}
         onClose={() => setIsQuizOpen(false)}
         articles={ARTICLES}
-        onSelectArticle={(slug) => navigate(`/blog/${slug}`)}
+        onSelectArticle={(slug) => navigate(`/${slug}`)}
       />
 
       <SavedArticlesDrawer
@@ -273,7 +289,7 @@ export default function App() {
         onClose={() => setIsSavedDrawerOpen(false)}
         savedSlugs={savedSlugs}
         articles={ARTICLES}
-        onSelectArticle={(slug) => navigate(`/blog/${slug}`)}
+        onSelectArticle={(slug) => navigate(`/${slug}`)}
         onRemoveSave={handleToggleSave}
         onClearAll={handleClearAllSaved}
       />

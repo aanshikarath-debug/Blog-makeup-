@@ -56,6 +56,7 @@ export interface FAQItem {
 
 export interface Article {
   slug: string;
+  aliases?: string[];
   title: string;
   subtitle: string;
   metaTitle: string;

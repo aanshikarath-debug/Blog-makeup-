@@ -32,21 +32,21 @@ export const BeautyQuizModal: React.FC<BeautyQuizModalProps> = ({
   // Determine matched article based on quiz answers
   const getMatchedArticleSlug = (): string => {
     if (skinType === 'Oily' || desiredFinish === 'Matte') {
-      return 'best-makeup-products-for-oily-skin';
+      return 'oily-skin';
     }
     if (primaryGoal === 'Beginner Essentials') {
-      return 'best-makeup-products-for-beginners';
+      return 'beginners';
     }
     if (primaryGoal === 'Budget Friendly') {
-      return 'affordable-makeup-products-worth-buying';
+      return 'affordable';
     }
     if (primaryGoal === 'Quick 10-Min Routine') {
-      return 'step-by-step-everyday-makeup-tutorial';
+      return 'everyday-makeup';
     }
     if (desiredFinish === 'Dewy Glow' || primaryGoal === 'Cheek Radiance') {
-      return 'best-blushes-for-a-natural-glow';
+      return 'blushes';
     }
-    return 'top-10-foundations-for-flawless-skin';
+    return 'foundations';
   };
 
   const matchedSlug = getMatchedArticleSlug();

@@ -10,7 +10,7 @@ export function updateMetaTags(article?: Article) {
     setMetaTag('property', 'og:title', article.metaTitle);
     setMetaTag('property', 'og:description', article.metaDescription);
     setMetaTag('property', 'og:type', 'article');
-    setMetaTag('property', 'og:url', `${origin}/blog/${article.slug}`);
+    setMetaTag('property', 'og:url', `${origin}/${article.slug}`);
     setMetaTag('property', 'og:image', article.heroImage);
 
     setMetaTag('name', 'twitter:card', 'summary_large_image');
@@ -25,7 +25,7 @@ export function updateMetaTags(article?: Article) {
       canonical.rel = 'canonical';
       document.head.appendChild(canonical);
     }
-    canonical.href = `${origin}/blog/${article.slug}`;
+    canonical.href = `${origin}/${article.slug}`;
 
     // Schema.org Article + FAQPage JSON-LD
     const faqEntities = article.faqs.map(faq => ({
@@ -62,7 +62,7 @@ export function updateMetaTags(article?: Article) {
           },
           'mainEntityOfPage': {
             '@type': 'WebPage',
-            '@id': `${origin}/blog/${article.slug}`,
+            '@id': `${origin}/${article.slug}`,
           },
         },
         ...(faqEntities.length > 0 ? [{

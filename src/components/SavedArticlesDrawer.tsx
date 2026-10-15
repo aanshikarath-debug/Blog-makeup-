@@ -23,7 +23,9 @@ export const SavedArticlesDrawer: React.FC<SavedArticlesDrawerProps> = ({
 }) => {
   if (!isOpen) return null;
 
-  const savedArticles = articles.filter((a) => savedSlugs.includes(a.slug));
+  const savedArticles = articles.filter(
+    (a) => savedSlugs.includes(a.slug) || (a.aliases && a.aliases.some((al) => savedSlugs.includes(al)))
+  );
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden bg-black/40 backdrop-blur-xs flex justify-end animate-in fade-in">
