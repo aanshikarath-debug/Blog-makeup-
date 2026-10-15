@@ -44,6 +44,8 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
 
   // FAQs open states
   const [openFaqs, setOpenFaqs] = useState<Record<number, boolean>>({ 0: true });
+  const [askQuestionText, setAskQuestionText] = useState('');
+  const [askQuestionSubmitted, setAskQuestionSubmitted] = useState(false);
 
   // Comments state persisted in localStorage
   const storageKey = `comments_${article.slug}`;
@@ -490,47 +492,6 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                 </div>
               </section>
 
-              {/* FAQs Section */}
-              <section id="faqs" className="scroll-mt-28 pt-6">
-                <div className="flex items-center gap-2 mb-6">
-                  <HelpCircle className="w-5 h-5 text-rose-800" />
-                  <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-[#241A1B]">
-                    Frequently Asked Questions
-                  </h2>
-                </div>
-
-                <div className="space-y-3">
-                  {article.faqs.map((faq, fIdx) => {
-                    const isOpen = !!openFaqs[fIdx];
-                    return (
-                      <div
-                        key={fIdx}
-                        className="bg-white border border-[#EBE1DC] rounded-xl overflow-hidden transition-all"
-                      >
-                        <button
-                          onClick={() =>
-                            setOpenFaqs((prev) => ({ ...prev, [fIdx]: !prev[fIdx] }))
-                          }
-                          className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-serif-title text-base sm:text-lg font-bold text-[#241A1B] hover:text-rose-900 transition-colors cursor-pointer"
-                        >
-                          <span>{faq.question}</span>
-                          <ChevronDown
-                            className={`w-4 h-4 text-stone-500 shrink-0 transition-transform ${
-                              isOpen ? 'rotate-180 text-rose-700' : ''
-                            }`}
-                          />
-                        </button>
-                        {isOpen && (
-                          <div className="px-4 pb-5 sm:px-5 sm:pb-5 text-stone-600 text-xs sm:text-sm leading-relaxed border-t border-[#F7EFEA] pt-3">
-                            {faq.answer}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
-
               {/* Editor Verdict Card */}
               <section id="verdict" className="scroll-mt-28 pt-4">
                 <div className="bg-[#FAF2ED] border-2 border-rose-200/80 rounded-2xl p-6 sm:p-8">
@@ -575,6 +536,106 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                   <p className="text-xs text-stone-600 leading-relaxed">{article.author.bio}</p>
                 </div>
               </div>
+
+              {/* Questions & Answers (Q&A) Section at Bottom */}
+              <section id="q-and-a" className="scroll-mt-28 pt-10 border-t border-[#EDE1D9]">
+                <div id="faqs" className="-mt-28 pt-28 pointer-events-none" />
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-rose-800">
+                      Expert Advice & Clarifications
+                    </span>
+                    <div className="flex items-center gap-2 mt-1">
+                      <HelpCircle className="w-5 h-5 text-rose-800" />
+                      <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-[#241A1B]">
+                        Questions & Answers (Q&A)
+                      </h2>
+                    </div>
+                  </div>
+                  <span className="text-xs text-stone-500 font-mono">
+                    {article.faqs.length} Answers Available
+                  </span>
+                </div>
+
+                <div className="space-y-3 mb-8">
+                  {article.faqs.map((faq, fIdx) => {
+                    const isOpen = !!openFaqs[fIdx];
+                    return (
+                      <div
+                        key={fIdx}
+                        className="bg-white border border-[#EBE1DC] rounded-xl overflow-hidden transition-all shadow-2xs hover:border-rose-300"
+                      >
+                        <button
+                          onClick={() =>
+                            setOpenFaqs((prev) => ({ ...prev, [fIdx]: !prev[fIdx] }))
+                          }
+                          className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-serif-title text-base sm:text-lg font-bold text-[#241A1B] hover:text-rose-900 transition-colors cursor-pointer"
+                        >
+                          <span className="flex items-start gap-2.5">
+                            <span className="text-rose-800 text-xs font-mono font-bold mt-1 shrink-0">
+                              Q{fIdx + 1}
+                            </span>
+                            <span>{faq.question}</span>
+                          </span>
+                          <ChevronDown
+                            className={`w-4 h-4 text-stone-500 shrink-0 transition-transform ${
+                              isOpen ? 'rotate-180 text-rose-700' : ''
+                            }`}
+                          />
+                        </button>
+                        {isOpen && (
+                          <div className="px-4 pb-5 sm:px-5 sm:pb-5 text-stone-600 text-xs sm:text-sm leading-relaxed border-t border-[#F7EFEA] pt-3 pl-10">
+                            <p>{faq.answer}</p>
+                            <span className="inline-block mt-3 text-[10px] font-bold uppercase tracking-widest text-rose-800">
+                              Verified by {article.author.name}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Quick Question Box for this article */}
+                <div className="p-4 sm:p-5 bg-[#FAF4F0] border border-[#ECE0D8] rounded-xl text-xs">
+                  <div className="flex items-center gap-2 font-bold text-stone-800 mb-2">
+                    <Sparkles className="w-4 h-4 text-rose-700" />
+                    <span>Have a question about this guide?</span>
+                  </div>
+                  {askQuestionSubmitted ? (
+                    <div className="p-3 bg-white border border-rose-200 rounded-lg text-rose-900 flex items-center gap-2">
+                      <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>Thank you! Your question was sent to {article.author.name}. We will review and add it to this guide.</span>
+                    </div>
+                  ) : (
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        if (!askQuestionText.trim()) return;
+                        setAskQuestionSubmitted(true);
+                        setAskQuestionText('');
+                        setTimeout(() => setAskQuestionSubmitted(false), 5000);
+                      }}
+                      className="flex flex-col sm:flex-row gap-2"
+                    >
+                      <input
+                        type="text"
+                        placeholder="Ask a question about this routine or product..."
+                        value={askQuestionText}
+                        onChange={(e) => setAskQuestionText(e.target.value)}
+                        required
+                        className="flex-1 px-3 py-2 bg-white border border-[#E0D2CB] rounded-lg text-xs text-stone-800 focus:outline-none focus:ring-1 focus:ring-rose-500 placeholder:text-stone-400"
+                      />
+                      <button
+                        type="submit"
+                        className="px-4 py-2 bg-rose-800 hover:bg-rose-900 text-white font-semibold rounded-lg text-xs uppercase tracking-wider transition-colors cursor-pointer shrink-0"
+                      >
+                        Ask Question
+                      </button>
+                    </form>
+                  )}
+                </div>
+              </section>
 
               {/* Community Reviews & Comments */}
               <section className="pt-8 border-t border-[#EDE1D9]">

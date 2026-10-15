@@ -408,6 +408,14 @@ export const ARTICLES: Article[] = [
         question: 'What is the best nude lipstick for pigmented lips?',
         answer: 'If your natural lips have deep purple or mauve undertones, sheer pinks will look grey. Look for warm caramel, deep mocha, or rich terracotta tones that contain brown-red undertones.',
       },
+      {
+        question: 'How do I prevent bold lipstick from transferring onto coffee cups or teeth?',
+        answer: 'Apply your first coat of lipstick, blot with a single ply of facial tissue, lightly dust translucent powder through the tissue with a brush, and apply a final sheer coat. The powder creates a microscopic binder layer.',
+      },
+      {
+        question: 'Can people with very fair porcelain skin wear deep dark berries?',
+        answer: 'Absolutely! Deep berries create an editorial Snow White contrast on fair skin. Balance the look with minimal eye makeup and groomed feathery brows so the lip is the clear focal point.',
+      },
     ],
     editorVerdict: {
       summary: 'Charlotte Tilbury’s shade expansion of Pillow Talk ensures everyone from fair to deep skin tones has an impeccably tailored nude.',
@@ -521,6 +529,14 @@ export const ARTICLES: Article[] = [
       {
         question: 'What is the #1 makeup category where you should never overspend?',
         answer: 'Mascara. Because mascara tubes harbor bacteria and dry out within 90 days, spending $40+ every 3 months is unnecessary when formulas like Maybelline Sky High deliver equal or superior curl hold.',
+      },
+      {
+        question: 'Do affordable foundations oxidize more than luxury foundations?',
+        answer: 'Oxidation depends on iron oxide pigments reacting with facial sebum and air, not price. Many $11 formulas now use coated pigments that resist oxidation just as effectively as $60 bottles.',
+      },
+      {
+        question: 'What drugstore product performs identically to Charlotte Tilbury Flawless Filter?',
+        answer: 'The e.l.f. Halo Glow Liquid Filter is an undisputed 95% match in blind laboratory tests, utilizing squalane and finely-milled micro-pearls to yield the exact same red-carpet candlelit glow.',
       },
     ],
     editorVerdict: {
@@ -636,6 +652,14 @@ export const ARTICLES: Article[] = [
         question: 'How often should mascara be replaced?',
         answer: 'Strictly every 3 months. Every time you pump the wand, oxygen and air microbes enter the tube. Discarding on schedule prevents eye infections and dry flaky clumping.',
       },
+      {
+        question: 'Why do all normal mascaras give me raccoon eyes, and how does tubing solve it?',
+        answer: 'Natural skin oils on your eyelids dissolve traditional wax-based mascaras as you blink. Tubing mascaras wrap lashes in water-soluble polymer tubes that are impervious to oil and sweat, completely stopping under-eye transfer.',
+      },
+      {
+        question: 'How do you remove tubing mascara without pulling out lashes?',
+        answer: 'Soak a cotton pad with warm tap water (no makeup remover needed), press gently against your eyelids for 15 seconds, and gently wipe downward. The tiny polymer tubes slide right off intact.',
+      },
     ],
     editorVerdict: {
       summary: 'Thrive Causemetics wins for smudge-free, everyday ease, while Dior Iconic Overcurl remains king for high-fashion curved glamour.',
@@ -736,6 +760,14 @@ export const ARTICLES: Article[] = [
         question: 'Should you put concealer on before or after foundation?',
         answer: 'Always after foundation! Foundation unifies 80% of your complexion redness. Applying concealer after ensures you only use product where strictly necessary.',
       },
+      {
+        question: 'How do I stop concealer from settling into fine under-eye lines without baking?',
+        answer: 'Hydrate the under-eye area with lightweight eye gel, apply concealer only on the inner hollow where darkness lives (avoiding the outer crow feet), tap with your ring finger, and dust a micro-veil of silica powder using a fluffy eyeshadow brush rather than a sponge.',
+      },
+      {
+        question: 'What is the secret to hiding an active raised pimple?',
+        answer: 'Use a matte, self-setting concealer in your EXACT foundation shade—never lighter. Dab with a tiny fine-tipped eyeliner brush right on the center of the blemish, wait 30 seconds for pigment to grip, then gently tap only the outer perimeter to blend.',
+      },
     ],
     editorVerdict: {
       summary: 'Keep Kosas Revealer for nourishing under-eye brightening, and reserve a targeted full-coverage matte formula like Tarte Shape Tape for pinpoint blemish work.',
@@ -834,6 +866,14 @@ export const ARTICLES: Article[] = [
       {
         question: 'What blush shade looks most natural on fair vs olive skin?',
         answer: 'Fair skin looks radiant with petal pink and soft peach. Olive skin looks best with dusty rose, warm terracotta, and muted plum tones that harmonize with green undertones.',
+      },
+      {
+        question: 'Can you layer powder blush over liquid or cream blush?',
+        answer: 'Yes! In professional makeup artistry, this is known as blush sandwiching. Applying a sheer liquid blush first and dusting a matching baked powder on top creates vibrant color that survives 14 hours of humidity.',
+      },
+      {
+        question: 'How do I place blush to lift my face rather than making cheeks look round?',
+        answer: 'Keep the color strictly on the outer half of your cheekbones, starting level with the pupil and blending upward into the temple and hairline. Avoid placing blush close to the nostrils or low on the jowls.',
       },
     ],
     editorVerdict: {
@@ -941,6 +981,14 @@ export const ARTICLES: Article[] = [
         question: 'Are prestige beauty brands really better than drugstore?',
         answer: 'In categories like micro-milled finishing powders, multi-dimensional eye quads, and long-wear foundations, prestige formulations still carry superior micronization technology.',
       },
+      {
+        question: 'Which brand offers the best fragrance-free, sensitive skin makeup?',
+        answer: 'Ilia Beauty and Tower 28 lead the industry in non-comedogenic, eczema-safe, and fragrance-free formulations that perform without triggering redness or dermatitis.',
+      },
+      {
+        question: 'What makes Hourglass powders look so much smoother than standard powders?',
+        answer: 'Hourglass uses photoluminescent technology with micronized particles that refract ambient light across skin irregularities, acting like an optical real-life soft-focus lens.',
+      },
     ],
     editorVerdict: {
       summary: 'For effortless everyday beauty, Rare Beauty offers the best modern value. For red-carpet sophistication, Charlotte Tilbury and Hourglass remain unmatched.',
@@ -1042,6 +1090,14 @@ export const ARTICLES: Article[] = [
       {
         question: 'What if I wake up with puffy dark circles?',
         answer: 'Keep two metal spoons or an ice roller in the freezer and roll under your eyes for 60 seconds before applying moisturizer. The vasoconstriction shrinks puffiness instantly.',
+      },
+      {
+        question: 'How do I take this 10-minute look from day to night in under 60 seconds?',
+        answer: 'Tightline your upper waterline with an espresso or black kohl pencil, swipe a bold red or deep berry lipstick over your sheer lip balm, and add a single extra dot of highlighter to your cheekbones.',
+      },
+      {
+        question: 'What is the fastest way to fix over-applied blush in the morning rush?',
+        answer: 'Do not wipe it off with a makeup wipe! Take the foundation-stained sponge or brush you used for your base and stipple it directly over the blush. The residual pigment cancels the excess intensity in 5 seconds.',
       },
     ],
     editorVerdict: {
@@ -1155,6 +1211,14 @@ export const ARTICLES: Article[] = [
       {
         question: 'What is better for midday shine: blotting paper or powder?',
         answer: 'Blotting paper first! If you apply powder directly over midday facial oil, you form a muddy paste. Always absorb surface sebum with paper first, then tap powder if needed.',
+      },
+      {
+        question: 'Does setting spray really stop oil breakthrough or does it just lock powders?',
+        answer: 'Film-forming polymers (such as PVP/Acrylates Copolymer) physically seal makeup with a microscopic barrier that prevents facial sebum and perspiration from dissolving pigment binders.',
+      },
+      {
+        question: 'Can someone with oily skin use dewy cream blushes without sliding off?',
+        answer: 'Yes! Set your base foundation with powder first, tap the cream blush lightly with fingers, and lock the cheekbones with a light spritz of long-wear setting mist.',
       },
     ],
     editorVerdict: {

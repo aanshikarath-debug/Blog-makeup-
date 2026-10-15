@@ -9,6 +9,7 @@ import { ArticleCard } from './components/ArticleCard';
 import { ArticleDetail } from './components/ArticleDetail';
 import { BeautyQuizModal } from './components/BeautyQuizModal';
 import { SavedArticlesDrawer } from './components/SavedArticlesDrawer';
+import { HomeFAQSection } from './components/HomeFAQSection';
 import { Footer } from './components/Footer';
 import { Sparkles, SlidersHorizontal, Search, RefreshCw } from 'lucide-react';
 
@@ -268,6 +269,9 @@ export default function App() {
                 Launch Routine Matcher
               </button>
             </div>
+
+            {/* Q&A Section on Homepage */}
+            <HomeFAQSection />
           </div>
         )}
       </main>
