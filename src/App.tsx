@@ -162,7 +162,14 @@ export default function App() {
           />
         ) : (
           /* Editorial Homepage */
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-20">
+            {/* Main Homepage Heading */}
+            <div className="text-center pt-2 pb-6 mb-8 border-b border-[#EFE5E0]">
+              <h1 className="font-serif-title text-4xl sm:text-6xl md:text-7xl font-bold text-[#241A1B] tracking-tight">
+                Velvet Glow
+              </h1>
+            </div>
+
             {/* Show Featured Magazine Hero only when NOT searching and on "All" category */}
             {selectedCategory === 'All' && !searchQuery && (
               <HeroFeatured

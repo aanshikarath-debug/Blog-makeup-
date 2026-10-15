@@ -54,7 +54,7 @@ export function updateMetaTags(article?: Article) {
           },
           'publisher': {
             '@type': 'Organization',
-            'name': 'Velvet & Glow',
+            'name': 'Velvet Glow',
             'logo': {
               '@type': 'ImageObject',
               'url': `${origin}/logo.png`,
@@ -75,7 +75,7 @@ export function updateMetaTags(article?: Article) {
     updateJsonLd(jsonLdData);
   } else {
     // Reset to homepage SEO
-    const defaultTitle = 'Velvet & Glow – Beauty & Makeup Journal';
+    const defaultTitle = 'Velvet Glow';
     const defaultDesc = 'An editorial beauty destination featuring expert makeup guides, curated product reviews, beginner tutorials, and skincare advice.';
 
     document.title = defaultTitle;
@@ -93,7 +93,7 @@ export function updateMetaTags(article?: Article) {
     const homeJsonLd = {
       '@context': 'https://schema.org',
       '@type': 'Blog',
-      'name': 'Velvet & Glow',
+      'name': 'Velvet Glow',
       'description': defaultDesc,
       'url': origin,
     };

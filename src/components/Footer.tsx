@@ -78,8 +78,8 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-stone-800">
           {/* Brand Manifesto */}
           <div className="space-y-4">
-            <span className="font-serif-title text-2xl tracking-[0.16em] text-white font-semibold uppercase block">
-              Velvet & Glow
+            <span className="font-serif-title text-2xl tracking-wide text-white font-bold block">
+              Velvet Glow
             </span>
             <p className="text-xs text-stone-400 leading-relaxed">
               An independent beauty editorial journal published from Paris and New York. Dedicated to honest cosmetic chemistry, inclusive undertone guides, and timeless, effortless rituals.
@@ -146,7 +146,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Bottom Copyright & Disclaimer */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
-          <p>© 2026 Velvet & Glow Editorial. All rights reserved.</p>
+          <p>© 2026 Velvet Glow. All rights reserved.</p>
           <div className="flex items-center gap-6 text-[11px]">
             <span>Editorial Standards</span>
             <span aria-hidden="true">·</span>

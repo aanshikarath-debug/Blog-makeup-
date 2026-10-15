@@ -46,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
             <span className="font-medium text-[11px] sm:text-xs tracking-widest">
-              Velvet & Glow · The Modern Beauty & Makeup Journal
+              Velvet Glow
             </span>
           </div>
           <div className="hidden md:flex items-center gap-4 text-[11px] tracking-widest text-[#E6D8D2]">
@@ -81,11 +81,8 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={onNavigateHome}
               className="inline-block text-left group cursor-pointer"
             >
-              <span className="font-serif-title text-2xl sm:text-3xl tracking-[0.18em] text-[#241A1B] font-semibold uppercase group-hover:text-rose-900 transition-colors">
-                Velvet & Glow
-              </span>
-              <span className="block text-[10px] tracking-[0.3em] uppercase text-rose-700 font-medium">
-                Haute Beauté & Skincare
+              <span className="font-serif-title text-2xl sm:text-3xl tracking-wide text-[#241A1B] font-bold group-hover:text-rose-900 transition-colors">
+                Velvet Glow
               </span>
             </button>
           </div>
