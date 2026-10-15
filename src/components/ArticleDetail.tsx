@@ -115,7 +115,8 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
   };
 
   const handleShare = async (platform: 'copy' | 'twitter' | 'pinterest' | 'facebook' | 'whatsapp') => {
-    const cleanUrl = `${window.location.origin}/${article.slug}`;
+    const domain = (import.meta.env.VITE_APP_URL as string) || window.location.origin;
+    const cleanUrl = `${domain}/${article.slug}`;
     const title = article.title;
 
     if (platform === 'copy') {

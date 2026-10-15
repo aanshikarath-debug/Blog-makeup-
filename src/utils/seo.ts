@@ -1,7 +1,7 @@
 import { Article } from '../types';
 
 export function updateMetaTags(article?: Article) {
-  const origin = window.location.origin;
+  const origin = (import.meta.env.VITE_APP_URL as string) || window.location.origin;
 
   if (article) {
     document.title = article.metaTitle;
