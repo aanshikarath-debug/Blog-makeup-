@@ -212,15 +212,20 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-4 text-xs">
           <button
             onClick={onBack}
+            aria-label="Return to Velvet Glow Complete Makeup Guide Homepage"
             className="inline-flex items-center gap-2 text-stone-600 hover:text-rose-900 font-medium transition-colors cursor-pointer py-1"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Back to All Articles</span>
+            <span>Return to Velvet Glow Homepage Makeup Guide</span>
           </button>
 
           <div className="flex items-center gap-2 text-stone-400 text-xs">
-            <span className="hover:text-stone-700 cursor-pointer" onClick={onBack}>
-              Home
+            <span
+              className="hover:text-stone-700 cursor-pointer"
+              onClick={onBack}
+              title="Velvet Glow Homepage"
+            >
+              Velvet Glow Home
             </span>
             <span>/</span>
             <span className="text-stone-700 font-medium">{article.category}</span>
@@ -442,12 +447,52 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                     </p>
                   )}
 
+                  {/* Embedded Section Image with descriptive alt text, caption, and under 100 KB compression */}
+                  {sec.image && (
+                    <figure className="my-6 rounded-xl overflow-hidden border border-[#EAE0D8] bg-[#FAF5F2]">
+                      <img
+                        src={sec.image.url}
+                        alt={sec.image.alt}
+                        loading="lazy"
+                        className="w-full h-auto max-h-[440px] object-cover object-center"
+                      />
+                      {sec.image.caption && (
+                        <figcaption className="p-3 text-xs text-stone-500 italic text-center border-t border-[#EFE5DF] bg-[#FAF5F2]">
+                          {sec.image.caption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  )}
+
                   <div className="space-y-4 leading-relaxed">
-                    {sec.paragraphs.map((p, pIdx) => (
-                      <p key={pIdx} className="text-stone-700 whitespace-pre-line">
-                        {p}
-                      </p>
-                    ))}
+                    {sec.paragraphs.map((p, pIdx) => {
+                      if (p.startsWith('Q:')) {
+                        const [qPart, ...aParts] = p.split('\nA: ');
+                        const question = qPart.replace(/^Q:\s*/, '');
+                        const answer = aParts.join('\nA: ');
+                        return (
+                          <div
+                            key={pIdx}
+                            className="my-5 p-4 sm:p-5 bg-[#FAF5F2] border border-rose-200/70 rounded-xl"
+                          >
+                            <p className="font-bold text-[#241A1B] text-sm sm:text-base mb-1.5 flex items-start gap-2">
+                              <span className="text-rose-800 font-mono text-xs font-bold uppercase tracking-wider px-2 py-0.5 bg-rose-100 rounded">
+                                Expert Q&A
+                              </span>
+                              <span>{question}</span>
+                            </p>
+                            <p className="text-stone-700 text-xs sm:text-sm pl-0 sm:pl-7 leading-relaxed mt-2">
+                              {answer}
+                            </p>
+                          </div>
+                        );
+                      }
+                      return (
+                        <p key={pIdx} className="text-stone-700 whitespace-pre-line">
+                          {p}
+                        </p>
+                      );
+                    })}
                   </div>
 
                   {/* Pro Tip Callout */}
@@ -762,9 +807,10 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           </div>
           <button
             onClick={onBack}
-            className="text-xs font-semibold text-rose-800 hover:text-rose-950 uppercase tracking-wider"
+            aria-label="Explore all Velvet Glow editorial makeup guides and tutorials"
+            className="text-xs font-semibold text-rose-800 hover:text-rose-950 uppercase tracking-wider cursor-pointer"
           >
-            View All Guides →
+            Explore All Editorial Makeup Guides →
           </button>
         </div>
 

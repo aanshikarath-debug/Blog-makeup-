@@ -98,8 +98,11 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
                 </div>
               </div>
 
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-rose-800 group-hover:translate-x-1 transition-transform">
-                <span>Read Full Guide</span>
+              <span
+                aria-label={`Read complete guide: ${featuredArticle.title}`}
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-rose-800 group-hover:translate-x-1 transition-transform"
+              >
+                <span>Read Complete {featuredArticle.primaryKeyword || 'Makeup Guide'}</span>
                 <ArrowRight className="w-4 h-4" />
               </span>
             </div>
@@ -150,8 +153,11 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
 
                 <div className="mt-3 flex items-center justify-between text-xs text-stone-500">
                   <span>{art.author.name}</span>
-                  <span className="text-rose-800 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                    <span>Read</span>
+                  <span
+                    aria-label={`Read complete guide: ${art.title}`}
+                    className="text-rose-800 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1"
+                  >
+                    <span>Read Full {art.primaryKeyword || 'Guide'}</span>
                     <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>

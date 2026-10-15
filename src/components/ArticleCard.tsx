@@ -86,8 +86,11 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             </span>
           </div>
 
-          <span className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-rose-800 group-hover:translate-x-1 transition-transform">
-            <span>Read Guide</span>
+          <span
+            aria-label={`Read complete tutorial: ${article.title}`}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-rose-800 group-hover:translate-x-1 transition-transform"
+          >
+            <span>Read {article.primaryKeyword || 'Full Guide'}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </span>
         </div>

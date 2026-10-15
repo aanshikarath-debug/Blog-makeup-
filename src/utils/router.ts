@@ -1,52 +1,102 @@
 import { useState, useEffect } from 'react';
+import { Category } from '../types';
+
+export const CATEGORY_SLUG_MAP: Record<string, Category> = {
+  'beginner-guides': 'Beginner Guides',
+  'complexion-and-base': 'Complexion & Base',
+  'lips': 'Lips',
+  'budget-beauty': 'Budget Beauty',
+  'eyes-and-brows': 'Eyes & Brows',
+  'blush-and-cheek': 'Blush & Cheek',
+  'brand-reviews': 'Brand Reviews',
+  'tutorials': 'Tutorials',
+};
+
+export const CATEGORY_TO_SLUG: Record<Category, string> = {
+  'All': '',
+  'Beginner Guides': 'beginner-guides',
+  'Complexion & Base': 'complexion-and-base',
+  'Lips': 'lips',
+  'Budget Beauty': 'budget-beauty',
+  'Eyes & Brows': 'eyes-and-brows',
+  'Blush & Cheek': 'blush-and-cheek',
+  'Brand Reviews': 'brand-reviews',
+  'Tutorials': 'tutorials',
+  'Skincare & Prep': 'skincare-and-prep',
+};
 
 export interface RouteState {
   path: string;
   slug?: string;
-  category?: string;
+  category?: Category;
+  view?: 'home' | 'quiz' | 'saved';
   searchQuery?: string;
 }
 
-function parseLocation(): RouteState {
+export function parseLocation(): RouteState {
   const hash = window.location.hash;
   let rawPath = window.location.pathname;
 
-  // Support both hash-based fallback routing and pushState pathname routing
+  // Clean away any historical hash fragments to maintain clean URLs without '#'
   if (hash) {
     if (hash.startsWith('#/')) {
       rawPath = hash.replace('#', '');
-    } else if (hash.startsWith('#')) {
+    } else if (hash.startsWith('#') && !hash.includes('-section')) {
       rawPath = '/' + hash.replace('#', '');
     }
   }
 
-  // Clean path: remove query parameters and trailing slashes
-  const cleanPath = rawPath.split('?')[0].split('#')[0].replace(/\/+$/, '') || '/';
+  // Clean path: all lowercase, remove trailing slash and query params
+  const cleanPath = (rawPath.split('?')[0].split('#')[0].replace(/\/+$/, '') || '/').toLowerCase();
 
   const urlParams = new URLSearchParams(window.location.search);
-  const categoryParam = urlParams.get('category') || undefined;
   const searchParam = urlParams.get('q') || undefined;
 
-  // Extract slug from path:
-  // e.g. /beginners -> "beginners"
-  // e.g. /blog/beginners -> "beginners"
-  // e.g. /b/beginners -> "beginners"
-  // e.g. / -> undefined
-  let candidateSlug: string | undefined = undefined;
+  // 1. Dedicated Quiz tab
+  if (cleanPath === '/beauty-matcher-quiz' || cleanPath === '/routine-matcher') {
+    return {
+      path: '/beauty-matcher-quiz',
+      view: 'quiz',
+      searchQuery: searchParam,
+    };
+  }
 
+  // 2. Dedicated Saved articles tab
+  if (cleanPath === '/saved-articles' || cleanPath === '/reading-list') {
+    return {
+      path: '/saved-articles',
+      view: 'saved',
+      searchQuery: searchParam,
+    };
+  }
+
+  // 3. Category tab routes e.g. /category/beginner-guides
+  if (cleanPath.startsWith('/category/')) {
+    const catSlug = cleanPath.replace('/category/', '').trim();
+    const mappedCategory = CATEGORY_SLUG_MAP[catSlug];
+    return {
+      path: cleanPath,
+      category: mappedCategory || 'All',
+      view: 'home',
+      searchQuery: searchParam,
+    };
+  }
+
+  // 4. Short clean root article slug e.g. /makeup-for-beginners or /beginners
+  let candidateSlug: string | undefined = undefined;
   if (cleanPath.startsWith('/blog/')) {
     candidateSlug = cleanPath.replace('/blog/', '').trim();
   } else if (cleanPath.startsWith('/b/')) {
     candidateSlug = cleanPath.replace('/b/', '').trim();
   } else if (cleanPath.length > 1 && !cleanPath.includes('.')) {
-    // Direct short clean root slug e.g. /beginners
     candidateSlug = cleanPath.substring(1).trim();
   }
 
   return {
     path: cleanPath,
-    slug: candidateSlug || undefined,
-    category: categoryParam,
+    slug: candidateSlug,
+    view: candidateSlug ? undefined : 'home',
+    category: undefined,
     searchQuery: searchParam,
   };
 }
@@ -69,7 +119,7 @@ export function useRouter() {
   }, []);
 
   const navigate = (to: string, options?: { replace?: boolean; preserveScroll?: boolean }) => {
-    // If target is an on-page anchor
+    // If target is an on-page jump anchor inside an article
     if (to.startsWith('#') && !to.startsWith('#/')) {
       const elementId = to.substring(1);
       const element = document.getElementById(elementId);
@@ -79,20 +129,19 @@ export function useRouter() {
       return;
     }
 
-    // Format clean URL path:
-    // If given e.g. "beginners" -> "/beginners"
-    // If given e.g. "/blog/beginners" -> normalize to "/beginners"
-    let targetPath = to;
-    if (!targetPath.startsWith('/') && !targetPath.startsWith('#')) {
+    // Format clean URL path: all lowercase, joined by hyphens, no '#' or random numbers
+    let targetPath = to.toLowerCase().trim();
+    if (!targetPath.startsWith('/')) {
       targetPath = '/' + targetPath;
     }
 
-    // Shorten /blog/:slug to /:slug for clean, short presentation
+    // Strip legacy /blog/ prefixes for clean short URL presentation
     if (targetPath.startsWith('/blog/')) {
       targetPath = targetPath.replace('/blog/', '/');
-    } else if (targetPath.startsWith('/b/')) {
-      targetPath = targetPath.replace('/b/', '/');
     }
+
+    // Clean up double slashes
+    targetPath = targetPath.replace(/\/+/g, '/');
 
     if (options?.replace) {
       window.history.replaceState({}, '', targetPath);
