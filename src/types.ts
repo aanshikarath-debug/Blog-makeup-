@@ -61,6 +61,8 @@ export interface Article {
   subtitle: string;
   metaTitle: string;
   metaDescription: string;
+  primaryKeyword?: string;
+  keywords?: string[];
   category: Category;
   readTime: string;
   publishedAt: string;

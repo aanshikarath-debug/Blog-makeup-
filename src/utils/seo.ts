@@ -6,7 +6,14 @@ export function updateMetaTags(article?: Article) {
   if (article) {
     document.title = article.metaTitle;
 
+    const keywordsContent = article.keywords?.length
+      ? article.keywords.join(', ')
+      : article.tags?.join(', ') || '';
+
     setMetaTag('name', 'description', article.metaDescription);
+    if (keywordsContent) {
+      setMetaTag('name', 'keywords', keywordsContent);
+    }
     setMetaTag('property', 'og:title', article.metaTitle);
     setMetaTag('property', 'og:description', article.metaDescription);
     setMetaTag('property', 'og:type', 'article');
@@ -42,8 +49,10 @@ export function updateMetaTags(article?: Article) {
       '@graph': [
         {
           '@type': 'BlogPosting',
-          'headline': article.title,
+          'headline': article.metaTitle || article.title,
+          'name': article.title,
           'description': article.metaDescription,
+          'keywords': keywordsContent,
           'image': [article.heroImage],
           'datePublished': article.publishedAt,
           'dateModified': article.updatedAt,
@@ -74,16 +83,22 @@ export function updateMetaTags(article?: Article) {
 
     updateJsonLd(jsonLdData);
   } else {
-    // Reset to homepage SEO
-    const defaultTitle = 'Velvet Glow';
-    const defaultDesc = 'An editorial beauty destination featuring expert makeup guides, curated product reviews, beginner tutorials, and skincare advice.';
+    // Reset to homepage SEO — Main Makeup Guide
+    const defaultTitle = 'Velvet Glow – Complete Makeup Guide, Makeup Tips & Step-by-Step Tutorials';
+    const defaultDesc = 'Your complete makeup guide featuring expert makeup tips and tricks, easy makeup tutorials for beginners, step-by-step guides, natural makeup looks, and everyday makeup routines.';
+    const defaultKeywords = 'Makeup Guide, Makeup tips, Makeup tutorials, Makeup tips for beginners, Easy makeup tutorial, Step-by-step makeup guide, Natural makeup looks, Everyday makeup routine, Makeup tips and tricks, Complete makeup guide, Simple makeup looks';
 
     document.title = defaultTitle;
     setMetaTag('name', 'description', defaultDesc);
+    setMetaTag('name', 'keywords', defaultKeywords);
     setMetaTag('property', 'og:title', defaultTitle);
     setMetaTag('property', 'og:description', defaultDesc);
     setMetaTag('property', 'og:type', 'website');
     setMetaTag('property', 'og:url', origin);
+
+    setMetaTag('name', 'twitter:card', 'summary_large_image');
+    setMetaTag('name', 'twitter:title', defaultTitle);
+    setMetaTag('name', 'twitter:description', defaultDesc);
 
     let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (canonical) {
@@ -94,7 +109,9 @@ export function updateMetaTags(article?: Article) {
       '@context': 'https://schema.org',
       '@type': 'Blog',
       'name': 'Velvet Glow',
+      'headline': 'Velvet Glow – Complete Makeup Guide',
       'description': defaultDesc,
+      'keywords': defaultKeywords,
       'url': origin,
     };
     updateJsonLd(homeJsonLd);

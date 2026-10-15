@@ -196,7 +196,9 @@ export default function App() {
                     : `${selectedCategory} Masterclasses`}
                 </h2>
                 <p className="text-xs sm:text-sm text-stone-500 mt-1">
-                  Showing {filteredArticles.length} {filteredArticles.length === 1 ? 'guide' : 'guides'} with comprehensive shade analysis, product picks, and FAQs
+                  {selectedCategory === 'All' && !searchQuery
+                    ? 'Your complete makeup guide featuring step-by-step makeup guides, expert makeup tips and tricks, easy makeup tutorials, makeup tips for beginners, natural makeup looks, and simple everyday makeup routines.'
+                    : `Showing ${filteredArticles.length} ${filteredArticles.length === 1 ? 'guide' : 'guides'} with comprehensive shade analysis, product picks, and FAQs`}
                 </p>
               </div>
 
